@@ -1,4 +1,3 @@
-// commentCounter.js
 const countComments = (movieId, comments) => comments.length;
 
 const moviesCount = (shows) => shows.length;
