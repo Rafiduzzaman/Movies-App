@@ -1,3 +1,116 @@
+
+:root {
+  --header-height: 4rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --primary-color: #fff;
+  --secondary-color: #cf7c0f;
+  --dark-color: #181717;
+  --light-color: #f4f4f4;
+  --red-color: rgb(216, 0, 0);
+  --green-color: #0f0;
+  --orange-color: #ffa500;
+  --pink-color: #ffc0cb;
+  --brown-color: #a52a2a;
+  --black-color: #000;
+  --gray-color: #808080;
+  --light-gray-color: #d3d3d3;
+  --dark-gray-color: #a9a9a9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+h4 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
 body {
-  margin: 0%;
+  background-color: #000;
+  color: var(--primary-color);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#hero-section {
+  color: var(--red-color);
+  width: 100vw;
+  height: 80vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+/* nav stylings */
+.nav-bar-home {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--red-color);
+}
+
+.navbar-toggler-icon {
+  color: red;
+}
+
+.nav-link {
+  color: var(--red-color);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: var(--primary-color);
+}
+
+.hero-section .welcomeTitle {
+  font-weight: 800;
+}
+
+/* cards stylings */
+.card {
+  border-radius: 10px;
+}
+
+.custom-card {
+  background-color: transparent;
+  border: none;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+
+.card-button button {
+  background-color: var(--red-color);
+  border: none;
+  transition: all 500s ease-in-out;
+  color: white;
+}
+
+.card-button button:hover {
+  background-color: rgb(87, 18, 18);
+}
+
+.name-like-button {
+  display: flex;
+  justify-content: space-between;
 }
