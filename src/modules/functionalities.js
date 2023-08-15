@@ -7,8 +7,55 @@ const getMoviesData = async (url) => {
     throw new Error(error);
   }
 };
+const postLikes = async (movieId, api) => {
+  try {
+    const data = {
+      item_id: movieId,
+    };
 
-// comments
+    const response = await fetch(api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to post likes');
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+const getLikes = async (movieId) => {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/likes');
+  if (!response) {
+    throw new Error('Failed to fetched');
+  }
+  const data = await response.json();
+  const foundMovie = data.filter((movie) => movie.item_id === movieId);
+  foundMovie.forEach((item) => {
+    const likesCountContainer = document.querySelector(`.likesCount${movieId}`);
+    const countNum = item ? item.likes : 0;
+    likesCountContainer.textContent = countNum;
+  });
+};
+
+const getLikesForUnclick = async (movieId) => {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/likes');
+  if (!response) {
+    throw new Error('Failed to fetched');
+  }
+  const data = await response.json();
+  const foundMovie = data.filter((movie) => movie.item_id === movieId);
+  foundMovie.forEach((item) => {
+    const likesCountContainer = document.querySelector(`.likesCount${movieId}`);
+    const countNum = item ? item.likes : 0;
+    likesCountContainer.textContent = countNum - 1;
+  });
+};
+
 const postComment = async (api, movieId, username, comment) => {
   try {
     const data = {
@@ -47,7 +94,6 @@ const renderComments = (modal, comments) => {
   const commentArea = modal.querySelector('.commentArea');
   commentArea.innerHTML = '';
 
-  // Render the comments in the modal
   comments.forEach((comment) => {
     const commentDiv = document.createElement('div');
     commentDiv.textContent = `${comment.creation_date}:${comment.username}: ${comment.comment}`;
@@ -56,5 +102,11 @@ const renderComments = (modal, comments) => {
 };
 
 export {
-  getMoviesData, postComment, fetchCommentsFromApi, renderComments,
+  getMoviesData,
+  postLikes,
+  getLikes,
+  postComment,
+  fetchCommentsFromApi,
+  renderComments,
+  getLikesForUnclick,
 };

@@ -1,13 +1,17 @@
 import './style.css';
 import 'bootstrap';
 import { showApiUrl } from './modules/showsAPI.js';
-import { commentApi } from './modules/involvementAPI.js';
+import { likeApi, commentApi } from './modules/involvementAPI.js';
 import './assets/bg-for-page.jpg';
 import {
-  getMoviesData, postComment, fetchCommentsFromApi, renderComments,
+  getMoviesData,
+  postLikes, postComment,
+  getLikesForUnclick,
+  fetchCommentsFromApi,
+  renderComments,
+  getLikes,
 } from './modules/functionalities.js';
 
-// testing
 import { countComments } from './modules/counter.js';
 
 const renderMovies = async () => {
@@ -48,11 +52,13 @@ const renderMovies = async () => {
         </div>
       `;
 
-    // modal functionality
     const modal = document.createElement('div');
     modal.classList.add('modal', 'fade');
     modal.id = `commentModal-${movie.id}`;
-    modal.setAttribute('aria-labelledby', `exampleModalCenterTitle-${movie.id}`);
+    modal.setAttribute(
+      'aria-labelledby',
+      `exampleModalCenterTitle-${movie.id}`,
+    );
     modal.setAttribute('aria-hidden', 'true');
 
     modal.innerHTML = `
@@ -63,7 +69,9 @@ const renderMovies = async () => {
       </div>
       <div class="modal-body">
          <div>
-           <img src=${movie.image.medium} class=" image-fluid" alt="popup image">
+           <img src=${
+  movie.image.medium
+} class=" image-fluid" alt="popup image">
          </div>
          <div><h3>${movie.name}</h3></div>
          <div  class="movieSummary">${movie.summary}</div>
@@ -73,8 +81,6 @@ const renderMovies = async () => {
            <div><h4>Premiered:${movie.premiered}</h4></div>
          </div>
          <div class="commentArea">
-
-
          </div>
          <div><span class="commentsCounter"></span></div>
 
@@ -84,13 +90,19 @@ const renderMovies = async () => {
            
            <fieldset>
              <label for="name"></label>
-             <input type="text"  placeholder="name" id="username-${movie.id}" name="username">
+             <input type="text"  placeholder="name" id="username-${
+  movie.id
+}" name="username">
              
              <label for="comment"></label>
-             <textarea name="comment" max="100" id="comment-${movie.id}" placeholder="Type comment"  rows="5"></textarea>
+             <textarea name="comment" max="100" id="comment-${
+  movie.id
+}" placeholder="Type comment"  rows="5"></textarea>
            </fieldset> 
-           <button id="commentFormBtn-${movie.id}"  class="commentFormBtn"  btn" type="submit">Submit</button>
-          
+           <button id="commentFormBtn-${
+  movie.id
+}"  class="commentFormBtn"  btn" type="submit">Submit</button>
+        
            </form>
 
          </div>
@@ -103,8 +115,6 @@ const renderMovies = async () => {
   
   `;
     movieContainer.appendChild(movieCard);
-    //  Add event listener to the comment form
-    // Add event listener to the comment form
     const commentForm = modal.querySelector(`#commentFormBtn-${movie.id}`);
     commentForm.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -114,7 +124,6 @@ const renderMovies = async () => {
 
       await postComment(commentApi, movie.id, username, comment);
 
-      // Clear the form inputs
       modal.querySelector(`#username-${movie.id}`).value = '';
       modal.querySelector(`#comment-${movie.id}`).value = '';
 
@@ -126,6 +135,22 @@ const renderMovies = async () => {
     });
 
     document.body.appendChild(modal);
+    const likeBtn = movieCard.querySelector('.likeBtn');
+    let isLiked = false;
+
+    likeBtn.addEventListener('click', async () => {
+      if (isLiked) {
+        likeBtn.innerHTML = '&#9825';
+        isLiked = false;
+        await getLikesForUnclick(movie.id);
+      } else {
+        likeBtn.innerHTML = '❤️';
+        isLiked = true;
+        await postLikes(movie.id, likeApi);
+        await getLikes(movie.id);
+      }
+    });
+    await getLikes(movie.id);
   });
 };
 
