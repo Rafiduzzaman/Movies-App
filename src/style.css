@@ -39,11 +39,16 @@ body {
   position: relative;
 }
 
+button {
+  font-weight: 600;
+  font-style: normal;
+}
+
 #hero-section {
   color: var(--red-color);
   width: 100vw;
   height: 80vh;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('../dist/images/bg-for-page.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -110,7 +115,106 @@ body {
   background-color: rgb(87, 18, 18);
 }
 
+.commentFormBtn {
+  color: white;
+  padding: 0.4rem;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.commentFormBtn:hover {
+  color: red;
+  background-color: white;
+}
+
 .name-like-button {
   display: flex;
   justify-content: space-between;
+}
+
+/* modal styling */
+
+.modal {
+  width: 95vw;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+  width: 93%;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: 'cursive', sans-serif;
+}
+
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+
+.movieSummary {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.afterSummary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+/* forms */
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background: transparent;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.modal input,
+textarea {
+  border: 1px solid black;
+  font-size: 13px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 5px;
+  width: 100%;
+  background: #c5caca;
+  color: #000305;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 480px) {
+  form {
+    max-width: 480px;
+  }
+}
+
+.movieImg {
+  max-width: 20rem;
+  height: 100%;
 }
