@@ -1,3 +1,4 @@
+
 import './style.css';
 import 'bootstrap';
 import { showApiUrl } from './modules/showsAPI.js';
@@ -46,3 +47,4 @@ const renderMovies = async () => {
 };
 
 renderMovies();
+
