@@ -71,7 +71,7 @@ Clone this repository to your desired folder by running the following commands i
 ```sh
   cd your-prefered-folder-name
   
-  git clone https://github.com/jcmunav63/to_do_list.git
+  git clone https://github.com/Rafiduzzaman/Capstone-Project-Module2.git
 ```
 
 ### Prerequisites <a name="prerequisites"></a>
@@ -146,12 +146,24 @@ https:///
 - Twitter: [@jcmunav63](https://twitter.com/jcmunav63)
 - LinkedIn: [@juan-carlos-muñoz-navarrete](https://www.linkedin.com/in/juan-carlos-mu%C3%B1oz-navarrete-5a15b6276/)
 
+👤 **Md.Rafiduzzaman**
+
+- GitHub: [@Rdzaman20000](https://github.com/Rdzaman20000)
+- Twitter: [@99_spectre](https://twitter.com/99_spectre)
+- LinkedIn: [@md-rafiduzzaman-nahin](https://www.linkedin.com/in/md-rafiduzzaman-nahin-7431ab1b4/)
+
+👤 **Francis**
+
+- GitHub: [@Cobby](https://github.com/CobbyElsonFx)
+- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-The To Do List website will offer the following features:
+The Movie website will offer the following features:
 - **Deploy this site to Github Pages**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
