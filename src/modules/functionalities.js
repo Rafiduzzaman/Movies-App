@@ -101,11 +101,62 @@ const renderComments = (modal, comments) => {
   });
 };
 
+const renderReservations = (modalReservations, reservations) => {
+  const reservationArea = modalReservations.querySelector('.reservationtArea');
+  reservationArea.innerHTML = '';
+
+  // Render the comments in the modal
+  reservations.forEach((reservation) => {
+    const reservationsDiv = document.createElement('div');
+    reservationsDiv.textContent = `${reservation.username}:  ${reservation.date_start} - ${reservation.date_end}`;
+    reservationArea.appendChild(reservationsDiv);
+  });
+};
+
+// Function to create a reservation
+const postReservations = async (api, movieId, username, dateStart, dateEnd) => {
+  try {
+    const data = {
+      item_id: movieId,
+      username,
+      date_start: dateStart,
+      date_end: dateEnd,
+    };
+
+    const response = await fetch(api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to post reservation');
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const fetchReservations = async (itemId) => {
+  try {
+    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/reservations?item_id=${itemId}`);
+    const reservations = await response.json();
+    return reservations;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export {
   getMoviesData,
   postLikes,
   getLikes,
   postComment,
+  fetchReservations,
+  renderReservations,
+  postReservations,
   fetchCommentsFromApi,
   renderComments,
   getLikesForUnclick,

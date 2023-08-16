@@ -1,7 +1,7 @@
 import './style.css';
 import 'bootstrap';
 import { showApiUrl } from './modules/showsAPI.js';
-import { likeApi, commentApi } from './modules/involvementAPI.js';
+import { likeApi, commentApi, reservationApi } from './modules/involvementAPI.js';
 import './assets/bg-for-page.jpg';
 import {
   getMoviesData,
@@ -10,9 +10,12 @@ import {
   fetchCommentsFromApi,
   renderComments,
   getLikes,
+  postReservations,
+  fetchReservations,
+  renderReservations,
 } from './modules/functionalities.js';
 
-import { countComments } from './modules/counter.js';
+import { countComments, countReservations } from './modules/counter.js';
 
 const renderMovies = async () => {
   const data = await getMoviesData(showApiUrl);
@@ -138,6 +141,87 @@ const renderMovies = async () => {
     });
 
     document.body.appendChild(modal);
+
+    // modal for reservations
+    const modalReservations = document.createElement('div');
+    modalReservations.classList.add('modal', 'fade');
+    modalReservations.id = `reservationsModal-${movie.id}`;
+    modalReservations.setAttribute('aria-labelledby', `exampleModalCenterTitle-${movie.id}`);
+    modalReservations.setAttribute('aria-hidden', 'true');
+
+    modalReservations.innerHTML = `
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div>
+           <img src=${movie.image.medium} class=" image-fluid" alt="popup image">
+         </div>
+         <div><h3>${movie.name}</h3></div>
+         <div  class="movieSummary">${movie.summary}</div>
+         <div  class="afterSummary">
+           <div><h4>Geners:${movie.genres.join(', ')}</h4> </div>
+           <div><h4>Ratings: ${movie.rating.average}</h4></div>
+           <div><h4>Premiered:${movie.premiered}</h4></div>
+         </div>
+         <div class="reservationtArea">
+         </div>
+         <div><span class="reservationsCounter"></span></div>
+         <div>
+           <form  class="form">
+           <h1>Reservations</h1>
+           <fieldset>
+            <div>
+                <label for="username"></label>
+              <input type="text"  placeholder="name" id="username-${movie.id}" name="username">
+            </div>
+            <div>
+              <label for="date_start"></label>
+              <input type="date" id="date_start-${movie.id}" name="date_start">
+           </div>
+           <div>
+           <input type="date" id="date_end-${movie.id}" name="date_end">
+           <label for="date_end"></label>
+           </div>
+           </fieldset> 
+            <button id="reserveFormBtn-${movie.id}"  class=" reserveFormBtn-${movie.id}   btn" type="submit">Reserve</button>
+           </form>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  
+  `;
+
+    // Add event listener to revervations form
+    const reservationForm = modalReservations.querySelector(`#reserveFormBtn-${movie.id}`);
+    reservationForm.addEventListener('click', async (event) => {
+      event.preventDefault();
+      
+      const username = modalReservations.querySelector(`#username-${movie.id}`).value;
+      const dateStart = modalReservations.querySelector(`#date_start-${movie.id}`).value;
+      const dateEnd = modalReservations.querySelector(`#date_end-${movie.id}`).value;
+
+      await postReservations(reservationApi, movie.id, username, dateStart, dateEnd);
+
+      // Clear the form inputs
+      modalReservations.querySelector(`#username-${movie.id}`).value = '';
+      modalReservations.querySelector(`#date_start-${movie.id}`).value = '';
+      modalReservations.querySelector(`#date_end-${movie.id}`).value = '';
+
+      const reservations = await fetchReservations(movie.id);
+      renderReservations(modalReservations, reservations);
+      const reservationsCounter = modalReservations.querySelector('.reservationsCounter');
+      const numReservations = countReservations(movie.id, reservations);
+      reservationsCounter.textContent = `Reservation: ${numReservations}`;
+    });
+    document.body.appendChild(modalReservations);
+
     const likeBtn = movieCard.querySelector('.likeBtn');
     let isLiked = false;
 
