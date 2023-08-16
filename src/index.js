@@ -18,8 +18,11 @@ const renderMovies = async () => {
   const data = await getMoviesData(showApiUrl);
   data.sort(() => 0.5 - Math.random());
   data.length = 20;
-  const movieContainer = document.getElementById('movieContainer');
+  const numberOfLatestShows = data.length;
+  const latestShowsLink = document.getElementById('latestShowsLink');
+  latestShowsLink.innerHTML = `Latest Shows <span class="badge">(${numberOfLatestShows})</span>`;
 
+  const movieContainer = document.getElementById('movieContainer');
   data.forEach(async (movie) => {
     const movieCard = document.createElement('div');
     movieCard.classList.add('col-md-3', 'col-sm-6', 'mb-4');
