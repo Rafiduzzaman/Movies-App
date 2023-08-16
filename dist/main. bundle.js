@@ -8426,7 +8426,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   countComments: () => (/* binding */ countComments),
 /* harmony export */   moviesCount: () => (/* binding */ moviesCount)
 /* harmony export */ });
-// commentCounter.js
 var countComments = function countComments(movieId, comments) {
   return comments.length;
 };
@@ -8567,8 +8566,6 @@ var getLikes = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
-
-// unlike
 var getLikesForUnclick = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(movieId) {
     var response, data, foundMovie;
@@ -8607,8 +8604,6 @@ var getLikesForUnclick = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
-
-// comments
 var postComment = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(api, movieId, username, comment) {
     var data, response;
@@ -8686,8 +8681,6 @@ var fetchCommentsFromApi = /*#__PURE__*/function () {
 var renderComments = function renderComments(modal, comments) {
   var commentArea = modal.querySelector('.commentArea');
   commentArea.innerHTML = '';
-
-  // Render the comments in the modal
   comments.forEach(function (comment) {
     var commentDiv = document.createElement('div');
     commentDiv.textContent = "".concat(comment.creation_date, ":").concat(comment.username, ": ").concat(comment.comment);
@@ -8711,7 +8704,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var likeApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/likes';
 var commentApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/comments';
-// const reservationApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/comments';
 
 
 /***/ }),
@@ -9487,8 +9479,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-// testing
-
 var renderMovies = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
     var data, movieContainer;
@@ -9503,29 +9493,25 @@ var renderMovies = /*#__PURE__*/function () {
             return 0.5 - Math.random();
           });
           data.length = 20;
-          movieContainer = document.getElementById("movieContainer");
+          movieContainer = document.getElementById('movieContainer');
           data.forEach( /*#__PURE__*/function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(movie) {
               var movieCard, modal, commentForm, likeBtn, isLiked;
               return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                 while (1) switch (_context3.prev = _context3.next) {
                   case 0:
-                    movieCard = document.createElement("div");
-                    movieCard.classList.add("col-md-3", "col-sm-6", "mb-4");
+                    movieCard = document.createElement('div');
+                    movieCard.classList.add('col-md-3', 'col-sm-6', 'mb-4');
                     movieCard.innerHTML = "\n        <div class=\"card custom-card\">\n          <img src=".concat(movie.image.medium, " class=\"card-img-top\" alt=\"images\">\n          <div class=\"card-body\">\n            <div  class=\"name-like-button\">\n               <div>\n                <span class=\"card-title\">").concat(movie.name, "</span>\n               </div>\n              <div  class=\"likeBtnContainer\">\n                <span class=\"likesCount").concat(movie.id, "\">0</span>\n                <span class=\"likeBtn\" data-movie-id=\"").concat(movie.id, "\">&#9825</span>\n              </div>\n            </div>\n            <div class=\"card-button\">\n              <button type=\"button\" \n                      class=\"btn   btn-small comment-button \" \n                      data-bs-toggle=\"modal\" \n                      data-bs-target=\"#commentModal-").concat(movie.id, "\">\n                Comment\n              </button>\n \n              <button type=\"button\"  \n                      class=\"btn  reservationBtn\"  \n                      id=\"").concat(movie.id, "\" data-toggle=\"modal\" data-target=\"#exampleModal-").concat(movie.id, "\" >Reservations</button>\n            </div>\n          </div>\n        </div>\n      ");
-
-                    // modal functionality
-                    modal = document.createElement("div");
-                    modal.classList.add("modal", "fade");
+                    modal = document.createElement('div');
+                    modal.classList.add('modal', 'fade');
                     modal.id = "commentModal-".concat(movie.id);
-                    modal.setAttribute("aria-labelledby", "exampleModalCenterTitle-".concat(movie.id));
-                    modal.setAttribute("aria-hidden", "true");
-                    modal.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n           <div><h4>Geners:").concat(movie.genres.join(", "), "</h4> </div>\n           <div><h4>Ratings: ").concat(movie.rating.average, "</h4></div>\n           <div><h4>Premiered:").concat(movie.premiered, "</h4></div>\n         </div>\n         <div class=\"commentArea\">\n\n\n         </div>\n         <div><span class=\"commentsCounter\"></span></div>\n\n         <div>\n           <form  class=\"form\">\n           <h1>Comment</h1>\n           \n           <fieldset>\n             <label for=\"name\"></label>\n             <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n             \n             <label for=\"comment\"></label>\n             <textarea name=\"comment\" max=\"100\" id=\"comment-").concat(movie.id, "\" placeholder=\"Type comment\"  rows=\"5\"></textarea>\n           </fieldset> \n           <button id=\"commentFormBtn-").concat(movie.id, "\"  class=\"commentFormBtn\"  btn\" type=\"submit\">Submit</button>\n          \n           </form>\n\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  \n  ");
+                    modal.setAttribute('aria-labelledby', "exampleModalCenterTitle-".concat(movie.id));
+                    modal.setAttribute('aria-hidden', 'true');
+                    modal.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n           <div><h4>Geners:").concat(movie.genres.join(', '), "</h4> </div>\n           <div><h4>Ratings: ").concat(movie.rating.average, "</h4></div>\n           <div><h4>Premiered:").concat(movie.premiered, "</h4></div>\n         </div>\n         <div class=\"commentArea\">\n         </div>\n         <div><span class=\"commentsCounter\"></span></div>\n\n         <div>\n           <form  class=\"form\">\n           <h1>Comment</h1>\n           \n           <fieldset>\n             <label for=\"name\"></label>\n             <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n             \n             <label for=\"comment\"></label>\n             <textarea name=\"comment\" max=\"100\" id=\"comment-").concat(movie.id, "\" placeholder=\"Type comment\"  rows=\"5\"></textarea>\n           </fieldset> \n           <button id=\"commentFormBtn-").concat(movie.id, "\"  class=\"commentFormBtn\"  btn\" type=\"submit\">Submit</button>\n        \n           </form>\n\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  \n  ");
                     movieContainer.appendChild(movieCard);
-                    //  Add event listener to the comment form
-                    // Add event listener to the comment form
                     commentForm = modal.querySelector("#commentFormBtn-".concat(movie.id));
-                    commentForm.addEventListener("click", /*#__PURE__*/function () {
+                    commentForm.addEventListener('click', /*#__PURE__*/function () {
                       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
                         var username, comment, comments, commentsCounter, numComments;
                         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -9537,15 +9523,14 @@ var renderMovies = /*#__PURE__*/function () {
                               _context.next = 5;
                               return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.postComment)(_modules_involvementAPI_js__WEBPACK_IMPORTED_MODULE_3__.commentApi, movie.id, username, comment);
                             case 5:
-                              // Clear the form inputs
-                              modal.querySelector("#username-".concat(movie.id)).value = "";
-                              modal.querySelector("#comment-".concat(movie.id)).value = "";
+                              modal.querySelector("#username-".concat(movie.id)).value = '';
+                              modal.querySelector("#comment-".concat(movie.id)).value = '';
                               _context.next = 9;
                               return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.fetchCommentsFromApi)(movie.id);
                             case 9:
                               comments = _context.sent;
                               (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.renderComments)(modal, comments);
-                              commentsCounter = modal.querySelector(".commentsCounter");
+                              commentsCounter = modal.querySelector('.commentsCounter');
                               numComments = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_6__.countComments)(movie.id, comments);
                               commentsCounter.textContent = "Comments: ".concat(numComments);
                             case 14:
@@ -9559,10 +9544,9 @@ var renderMovies = /*#__PURE__*/function () {
                       };
                     }());
                     document.body.appendChild(modal);
-                    //  likes functionality
-                    likeBtn = movieCard.querySelector(".likeBtn"); // Select the like button within the movie card
+                    likeBtn = movieCard.querySelector('.likeBtn');
                     isLiked = false;
-                    likeBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                    likeBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
                       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                         while (1) switch (_context2.prev = _context2.next) {
                           case 0:
@@ -9570,8 +9554,7 @@ var renderMovies = /*#__PURE__*/function () {
                               _context2.next = 7;
                               break;
                             }
-                            // If already liked, subtract the like and change the symbol back
-                            likeBtn.innerHTML = "&#9825";
+                            likeBtn.innerHTML = '&#9825';
                             isLiked = false;
                             _context2.next = 5;
                             return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getLikesForUnclick)(movie.id);
@@ -9579,8 +9562,7 @@ var renderMovies = /*#__PURE__*/function () {
                             _context2.next = 13;
                             break;
                           case 7:
-                            // If not liked, add the like and change the symbol to ❤
-                            likeBtn.innerHTML = "❤️";
+                            likeBtn.innerHTML = '❤️';
                             isLiked = true;
                             _context2.next = 11;
                             return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.postLikes)(movie.id, _modules_involvementAPI_js__WEBPACK_IMPORTED_MODULE_3__.likeApi);
@@ -9593,7 +9575,6 @@ var renderMovies = /*#__PURE__*/function () {
                         }
                       }, _callee2);
                     })));
-                    // update UI on page load
                     _context3.next = 18;
                     return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getLikes)(movie.id);
                   case 18:
