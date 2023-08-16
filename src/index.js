@@ -155,10 +155,6 @@ const renderMovies = async () => {
     });
     await getLikes(movie.id);
   });
-
-
-
-
 };
 
 renderMovies();
