@@ -8424,10 +8424,15 @@ module.exports = function (item) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   countComments: () => (/* binding */ countComments),
+/* harmony export */   countReservations: () => (/* binding */ countReservations),
 /* harmony export */   moviesCount: () => (/* binding */ moviesCount)
 /* harmony export */ });
+// commentCounter.js
 var countComments = function countComments(movieId, comments) {
   return comments.length;
+};
+var countReservations = function countReservations(movieId, reservations) {
+  return reservations.length;
 };
 var moviesCount = function moviesCount(shows) {
   return shows.length;
@@ -8445,12 +8450,15 @@ var moviesCount = function moviesCount(shows) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   fetchCommentsFromApi: () => (/* binding */ fetchCommentsFromApi),
+/* harmony export */   fetchReservations: () => (/* binding */ fetchReservations),
 /* harmony export */   getLikes: () => (/* binding */ getLikes),
 /* harmony export */   getLikesForUnclick: () => (/* binding */ getLikesForUnclick),
 /* harmony export */   getMoviesData: () => (/* binding */ getMoviesData),
 /* harmony export */   postComment: () => (/* binding */ postComment),
 /* harmony export */   postLikes: () => (/* binding */ postLikes),
-/* harmony export */   renderComments: () => (/* binding */ renderComments)
+/* harmony export */   postReservations: () => (/* binding */ postReservations),
+/* harmony export */   renderComments: () => (/* binding */ renderComments),
+/* harmony export */   renderReservations: () => (/* binding */ renderReservations)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return { value: void 0, done: !0 }; } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable || "" === iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } throw new TypeError(_typeof(iterable) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -8687,6 +8695,94 @@ var renderComments = function renderComments(modal, comments) {
     commentArea.appendChild(commentDiv);
   });
 };
+var renderReservations = function renderReservations(modalReservations, reservations) {
+  var reservationArea = modalReservations.querySelector('.reservationtArea');
+  reservationArea.innerHTML = '';
+
+  // Render the comments in the modal
+  reservations.forEach(function (reservation) {
+    var reservationsDiv = document.createElement('div');
+    reservationsDiv.textContent = "".concat(reservation.username, ":  ").concat(reservation.date_start, " - ").concat(reservation.date_end);
+    reservationArea.appendChild(reservationsDiv);
+  });
+};
+
+// Function to create a reservation
+var postReservations = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(api, movieId, username, dateStart, dateEnd) {
+    var data, response;
+    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+          data = {
+            item_id: movieId,
+            username: username,
+            date_start: dateStart,
+            date_end: dateEnd
+          };
+          _context7.next = 4;
+          return fetch(api, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+        case 4:
+          response = _context7.sent;
+          if (response.ok) {
+            _context7.next = 7;
+            break;
+          }
+          throw new Error('Failed to post reservation');
+        case 7:
+          _context7.next = 12;
+          break;
+        case 9:
+          _context7.prev = 9;
+          _context7.t0 = _context7["catch"](0);
+          throw new Error(_context7.t0);
+        case 12:
+        case "end":
+          return _context7.stop();
+      }
+    }, _callee7, null, [[0, 9]]);
+  }));
+  return function postReservations(_x11, _x12, _x13, _x14, _x15) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+var fetchReservations = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(itemId) {
+    var response, reservations;
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.prev = 0;
+          _context8.next = 3;
+          return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/reservations?item_id=".concat(itemId));
+        case 3:
+          response = _context8.sent;
+          _context8.next = 6;
+          return response.json();
+        case 6:
+          reservations = _context8.sent;
+          return _context8.abrupt("return", reservations);
+        case 10:
+          _context8.prev = 10;
+          _context8.t0 = _context8["catch"](0);
+          throw new Error(_context8.t0);
+        case 13:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8, null, [[0, 10]]);
+  }));
+  return function fetchReservations(_x16) {
+    return _ref8.apply(this, arguments);
+  };
+}();
 
 
 /***/ }),
@@ -8700,10 +8796,12 @@ var renderComments = function renderComments(modal, comments) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   commentApi: () => (/* binding */ commentApi),
-/* harmony export */   likeApi: () => (/* binding */ likeApi)
+/* harmony export */   likeApi: () => (/* binding */ likeApi),
+/* harmony export */   reservationApi: () => (/* binding */ reservationApi)
 /* harmony export */ });
 var likeApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/likes';
 var commentApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/comments';
+var reservationApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/1lQTFOEu5O5KmM8n2meG/reservations';
 
 
 /***/ }),
@@ -9480,29 +9578,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var renderMovies = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-    var data, movieContainer;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+    var data, numberOfLatestShows, latestShowsLink, movieContainer;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          _context4.next = 2;
+          _context5.next = 2;
           return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getMoviesData)(_modules_showsAPI_js__WEBPACK_IMPORTED_MODULE_2__.showApiUrl);
         case 2:
-          data = _context4.sent;
+          data = _context5.sent;
           data.sort(function () {
             return 0.5 - Math.random();
           });
           data.length = 20;
+          numberOfLatestShows = data.length;
+          latestShowsLink = document.getElementById('latestShowsLink');
+          latestShowsLink.innerHTML = "Latest Shows <span class=\"badge\">(".concat(numberOfLatestShows, ")</span>");
           movieContainer = document.getElementById('movieContainer');
           data.forEach( /*#__PURE__*/function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(movie) {
-              var movieCard, modal, commentForm, likeBtn, isLiked;
-              return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                while (1) switch (_context3.prev = _context3.next) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(movie) {
+              var movieCard, modal, commentForm, modalReservations, reservationForm, likeBtn, isLiked;
+              return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+                while (1) switch (_context4.prev = _context4.next) {
                   case 0:
                     movieCard = document.createElement('div');
                     movieCard.classList.add('col-md-3', 'col-sm-6', 'mb-4');
-                    movieCard.innerHTML = "\n        <div class=\"card custom-card\">\n          <img src=".concat(movie.image.medium, " class=\"card-img-top\" alt=\"images\">\n          <div class=\"card-body\">\n            <div  class=\"name-like-button\">\n               <div>\n                <span class=\"card-title\">").concat(movie.name, "</span>\n               </div>\n              <div  class=\"likeBtnContainer\">\n                <span class=\"likesCount").concat(movie.id, "\">0</span>\n                <span class=\"likeBtn\" data-movie-id=\"").concat(movie.id, "\">&#9825</span>\n              </div>\n            </div>\n            <div class=\"card-button\">\n              <button type=\"button\" \n                      class=\"btn   btn-small comment-button \" \n                      data-bs-toggle=\"modal\" \n                      data-bs-target=\"#commentModal-").concat(movie.id, "\">\n                Comment\n              </button>\n \n              <button type=\"button\"  \n                      class=\"btn  reservationBtn\"  \n                      id=\"").concat(movie.id, "\" data-toggle=\"modal\" data-target=\"#exampleModal-").concat(movie.id, "\" >Reservations</button>\n            </div>\n          </div>\n        </div>\n      ");
+                    movieCard.innerHTML = "\n        <div class=\"card custom-card\">\n          <img src=".concat(movie.image.medium, " class=\"card-img-top\" alt=\"images\">\n          <div class=\"card-body\">\n            <div  class=\"name-like-button\">\n               <div>\n                <span class=\"card-title\">").concat(movie.name, "</span>\n               </div>\n              <div  class=\"likeBtnContainer\">\n                <span class=\"likesCount").concat(movie.id, "\">0</span>\n                <span class=\"likeBtn\" data-movie-id=\"").concat(movie.id, "\">&#9825</span>\n              </div>\n            </div>\n            <div class=\"card-button\">\n              <button type=\"button\" \n                      class=\"btn   btn-small comment-button \" \n                      data-bs-toggle=\"modal\" \n                      data-bs-target=\"#commentModal-").concat(movie.id, "\">\n                Comment\n              </button>\n \n              <button type=\"button\" \n              class=\"btn   btn-small reservation-button \" \n              data-bs-toggle=\"modal\" \n              data-bs-target=\"#reservationsModal-").concat(movie.id, "\">\n              Reservations\n              </button>\n            </div>\n          </div>\n        </div>\n      ");
                     modal = document.createElement('div');
                     modal.classList.add('modal', 'fade');
                     modal.id = "commentModal-".concat(movie.id);
@@ -9544,54 +9645,101 @@ var renderMovies = /*#__PURE__*/function () {
                       };
                     }());
                     document.body.appendChild(modal);
+
+                    // modal for reservations
+                    modalReservations = document.createElement('div');
+                    modalReservations.classList.add('modal', 'fade');
+                    modalReservations.id = "reservationsModal-".concat(movie.id);
+                    modalReservations.setAttribute('aria-labelledby', "exampleModalCenterTitle-".concat(movie.id));
+                    modalReservations.setAttribute('aria-hidden', 'true');
+                    modalReservations.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n           <div><h4>Geners:").concat(movie.genres.join(', '), "</h4> </div>\n           <div><h4>Ratings: ").concat(movie.rating.average, "</h4></div>\n           <div><h4>Premiered:").concat(movie.premiered, "</h4></div>\n         </div>\n         <div class=\"reservationtArea\">\n         </div>\n         <div><span class=\"reservationsCounter\"></span></div>\n         <div>\n           <form  class=\"form\">\n           <h1>Reservations</h1>\n           <fieldset>\n            <div>\n                <label for=\"username\"></label>\n              <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n            </div>\n            <div>\n              <label for=\"date_start\"></label>\n              <input type=\"date\" id=\"date_start-").concat(movie.id, "\" name=\"date_start\">\n           </div>\n           <div>\n           <input type=\"date\" id=\"date_end-").concat(movie.id, "\" name=\"date_end\">\n           <label for=\"date_end\"></label>\n           </div>\n           </fieldset> \n            <button id=\"reserveFormBtn-").concat(movie.id, "\"  class=\" reserveFormBtn-").concat(movie.id, "   btn\" type=\"submit\">Reserve</button>\n           </form>\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  \n  ");
+
+                    // Add event listener to revervations form
+                    reservationForm = modalReservations.querySelector("#reserveFormBtn-".concat(movie.id));
+                    reservationForm.addEventListener('click', /*#__PURE__*/function () {
+                      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {
+                        var username, dateStart, dateEnd, reservations, reservationsCounter, numReservations;
+                        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                          while (1) switch (_context2.prev = _context2.next) {
+                            case 0:
+                              event.preventDefault();
+                              username = modalReservations.querySelector("#username-".concat(movie.id)).value;
+                              dateStart = modalReservations.querySelector("#date_start-".concat(movie.id)).value;
+                              dateEnd = modalReservations.querySelector("#date_end-".concat(movie.id)).value;
+                              _context2.next = 6;
+                              return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.postReservations)(_modules_involvementAPI_js__WEBPACK_IMPORTED_MODULE_3__.reservationApi, movie.id, username, dateStart, dateEnd);
+                            case 6:
+                              // Clear the form inputs
+                              modalReservations.querySelector("#username-".concat(movie.id)).value = '';
+                              modalReservations.querySelector("#date_start-".concat(movie.id)).value = '';
+                              modalReservations.querySelector("#date_end-".concat(movie.id)).value = '';
+                              _context2.next = 11;
+                              return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.fetchReservations)(movie.id);
+                            case 11:
+                              reservations = _context2.sent;
+                              (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.renderReservations)(modalReservations, reservations);
+                              reservationsCounter = modalReservations.querySelector('.reservationsCounter');
+                              numReservations = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_6__.countReservations)(movie.id, reservations);
+                              reservationsCounter.textContent = "Reservation: ".concat(numReservations);
+                            case 16:
+                            case "end":
+                              return _context2.stop();
+                          }
+                        }, _callee2);
+                      }));
+                      return function (_x3) {
+                        return _ref4.apply(this, arguments);
+                      };
+                    }());
+                    document.body.appendChild(modalReservations);
                     likeBtn = movieCard.querySelector('.likeBtn');
                     isLiked = false;
-                    likeBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-                      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                        while (1) switch (_context2.prev = _context2.next) {
+                    likeBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                        while (1) switch (_context3.prev = _context3.next) {
                           case 0:
                             if (!isLiked) {
-                              _context2.next = 7;
+                              _context3.next = 7;
                               break;
                             }
                             likeBtn.innerHTML = '&#9825';
                             isLiked = false;
-                            _context2.next = 5;
+                            _context3.next = 5;
                             return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getLikesForUnclick)(movie.id);
                           case 5:
-                            _context2.next = 13;
+                            _context3.next = 13;
                             break;
                           case 7:
                             likeBtn.innerHTML = '❤️';
                             isLiked = true;
-                            _context2.next = 11;
+                            _context3.next = 11;
                             return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.postLikes)(movie.id, _modules_involvementAPI_js__WEBPACK_IMPORTED_MODULE_3__.likeApi);
                           case 11:
-                            _context2.next = 13;
+                            _context3.next = 13;
                             return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getLikes)(movie.id);
                           case 13:
                           case "end":
-                            return _context2.stop();
+                            return _context3.stop();
                         }
-                      }, _callee2);
+                      }, _callee3);
                     })));
-                    _context3.next = 18;
+                    _context4.next = 27;
                     return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_5__.getLikes)(movie.id);
-                  case 18:
+                  case 27:
                   case "end":
-                    return _context3.stop();
+                    return _context4.stop();
                 }
-              }, _callee3);
+              }, _callee4);
             }));
             return function (_x) {
               return _ref2.apply(this, arguments);
             };
           }());
-        case 7:
+        case 10:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return function renderMovies() {
     return _ref.apply(this, arguments);
