@@ -50,9 +50,12 @@ const renderMovies = async () => {
                 Comment
               </button>
  
-              <button type="button"  
-                      class="btn  reservationBtn"  
-                      id="${movie.id}" data-toggle="modal" data-target="#exampleModal-${movie.id}" >Reservations</button>
+              <button type="button" 
+              class="btn   btn-small reservation-button " 
+              data-bs-toggle="modal" 
+              data-bs-target="#reservationsModal-${movie.id}">
+              Reservations
+              </button>
             </div>
           </div>
         </div>
@@ -202,7 +205,7 @@ const renderMovies = async () => {
     const reservationForm = modalReservations.querySelector(`#reserveFormBtn-${movie.id}`);
     reservationForm.addEventListener('click', async (event) => {
       event.preventDefault();
-      
+
       const username = modalReservations.querySelector(`#username-${movie.id}`).value;
       const dateStart = modalReservations.querySelector(`#date_start-${movie.id}`).value;
       const dateEnd = modalReservations.querySelector(`#date_end-${movie.id}`).value;
