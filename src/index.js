@@ -1,4 +1,5 @@
 import './style.css';
+import TypeIt from 'typeit';
 import 'bootstrap';
 import { showApiUrl } from './modules/showsAPI.js';
 import { likeApi, commentApi, reservationApi } from './modules/involvementAPI.js';
@@ -85,9 +86,9 @@ const renderMovies = async () => {
          <div><h3>${movie.name}</h3></div>
          <div  class="movieSummary">${movie.summary}</div>
          <div  class="afterSummary">
-           <div><h4>Geners:${movie.genres.join(', ')}</h4> </div>
-           <div><h4>Ratings: ${movie.rating.average}</h4></div>
-           <div><h4>Premiered:${movie.premiered}</h4></div>
+           <div><h4>Geners: <span>${movie.genres.join(', ')}</span></h4> </div>
+           <div><h4>Ratings:<span> ${movie.rating.average}</span></h4></div>
+           <div><h4>Premiered: <span>${movie.premiered}</span></h4></div>
          </div>
          <div class="commentArea">
          </div>
@@ -165,9 +166,9 @@ const renderMovies = async () => {
          <div><h3>${movie.name}</h3></div>
          <div  class="movieSummary">${movie.summary}</div>
          <div  class="afterSummary">
-           <div><h4>Geners:${movie.genres.join(', ')}</h4> </div>
-           <div><h4>Ratings: ${movie.rating.average}</h4></div>
-           <div><h4>Premiered:${movie.premiered}</h4></div>
+         <div><h4>Geners: <span>${movie.genres.join(', ')}</span></h4> </div>
+         <div><h4>Ratings:<span> ${movie.rating.average}</span></h4></div>
+         <div><h4>Premiered: <span>${movie.premiered}</span></h4></div>
          </div>
          <div class="reservationtArea">
          </div>
@@ -244,4 +245,9 @@ const renderMovies = async () => {
   });
 };
 
+const myTypeItInstance = new TypeIt('.type-effect', {
+  strings: 'Enjoy!',
+});
+
+myTypeItInstance.go();
 renderMovies();
