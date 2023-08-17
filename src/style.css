@@ -27,7 +27,13 @@
 
 h4 {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 800;
+  color: rgb(250, 17, 17);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+span {
+  color: white;
 }
 
 body {
@@ -37,11 +43,6 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-}
-
-button {
-  font-weight: 600;
-  font-style: normal;
 }
 
 #hero-section {
@@ -59,37 +60,70 @@ button {
 
 /* nav stylings */
 .nav-bar-home {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .navbar-brand {
   font-size: 20px;
   font-weight: 800;
   color: var(--red-color);
+  text-shadow: #000 1px 1px 1px;
 }
 
 .navbar-toggler-icon {
   color: red;
+  outline: red;
+  border: 1px solid red;
 }
 
 .nav-link {
-  color: var(--red-color);
-  font-size: 13px;
+  color: var(--primary-color);
+  font-size: 14px;
   font-weight: 800;
+  transition: all 0.4s ease-in-out;
 }
 
 .nav-link:hover,
 .navbar-brand:hover {
-  color: var(--primary-color);
+  color: var(--red-color);
 }
 
-.hero-section .welcomeTitle {
+.welcomeTitle {
   font-weight: 800;
+  font-size: 18px;
+  color: white;
+}
+
+.our {
+  color: var(--red-color);
+}
+
+.welcomeTitleWelc {
+  color: white;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+
+.searchBtn {
+  background-color: var(--red-color);
+  border: none;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  transition: all 0.4s ease-in-out;
+  outline: var(--red-color);
 }
 
 /* cards stylings */
 .card {
   border-radius: 10px;
+}
+
+.card img:hover {
+  box-shadow: 6px 6px 6px 0.5px rgba(255, 7, 7, 0.5);
+  transform: scale(1.06);
+  transition: all 0.3s ease-in-out;
+  background-color: white;
 }
 
 .custom-card {
@@ -104,15 +138,18 @@ button {
   align-items: center;
 }
 
-.card-button button {
+button {
   background-color: var(--red-color);
   border: none;
-  transition: all 500s ease-in-out;
-  color: white;
+  transition: all 0.4s ease-in-out;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-style: normal;
 }
 
-.card-button button:hover {
-  background-color: rgb(87, 18, 18);
+button:hover {
+  background-color: white;
+  color: var(--red-color);
 }
 
 .commentFormBtn {
@@ -193,10 +230,10 @@ textarea {
   outline: 0;
   padding: 5px;
   width: 100%;
-  background: #c5caca;
+  background: #fff;
   color: #000305;
   margin-bottom: 15px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 fieldset {
@@ -214,7 +251,37 @@ fieldset {
   }
 }
 
+@media (width <= 765px) {
+  .welcomeTitle {
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .welcomeTitleWelc {
+    color: white;
+    font-size: 19px;
+    text-transform: capitalize;
+  }
+
+  .navbar-brand {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--red-color);
+    text-shadow: #000 1px 1px 1px;
+  }
+}
+
 .movieImg {
   max-width: 20rem;
   height: 100%;
+}
+
+.footer-copyright {
+  background-color: var(--red-color);
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
 }

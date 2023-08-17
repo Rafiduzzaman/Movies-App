@@ -46,6 +46,7 @@
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.1",
     "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "typeit": "^8.7.1"
   }
 }
