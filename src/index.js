@@ -2,8 +2,11 @@ import './style.css';
 import TypeIt from 'typeit';
 import 'bootstrap';
 import { showApiUrl } from './modules/showsAPI.js';
+import navbarHamburgerToggler from './modules/navbar.js';
 import { likeApi, commentApi, reservationApi } from './modules/involvementAPI.js';
 import './assets/bg-for-page.jpg';
+import './assets/button-menu.png';
+import './assets/close-icon.svg';
 import {
   getMoviesData,
   postLikes, postComment,
@@ -52,9 +55,9 @@ const renderMovies = async () => {
               </button>
  
               <button type="button" 
-              class="btn   btn-small reservation-button " 
-              data-bs-toggle="modal" 
-              data-bs-target="#reservationsModal-${movie.id}">
+                    class="btn   btn-small reservation-button " 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#reservationsModal-${movie.id}">
               Reservations
               </button>
             </div>
@@ -249,5 +252,8 @@ const myTypeItInstance = new TypeIt('.type-effect', {
   strings: 'Enjoy!',
 });
 
-myTypeItInstance.go();
-renderMovies();
+document.addEventListener('DOMContentLoaded', () => {
+  myTypeItInstance.go();
+  renderMovies();
+  navbarHamburgerToggler();
+});
