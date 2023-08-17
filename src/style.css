@@ -25,6 +25,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 h4 {
   font-size: 13px;
   font-weight: 800;
@@ -68,12 +72,6 @@ body {
   font-weight: 800;
   color: var(--red-color);
   text-shadow: #000 1px 1px 1px;
-}
-
-.navbar-toggler-icon {
-  color: red;
-  outline: red;
-  border: 1px solid red;
 }
 
 .nav-link {
@@ -138,7 +136,7 @@ body {
   align-items: center;
 }
 
-button {
+.btn {
   background-color: var(--red-color);
   border: none;
   transition: all 0.4s ease-in-out;
@@ -147,7 +145,7 @@ button {
   font-style: normal;
 }
 
-button:hover {
+.btn:hover {
   background-color: white;
   color: var(--red-color);
 }
@@ -251,6 +249,34 @@ fieldset {
   }
 }
 
+@media (width > 765px) {
+  /* nav  start */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 75px;
+    z-index: 1000;
+  }
+
+  .navbar .nav-items {
+    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .navbar .hamburger-btn {
+    display: none;
+  }
+
+  /* nav end  */
+}
+
 @media (width <= 765px) {
   .welcomeTitle {
     font-weight: 800;
@@ -264,10 +290,77 @@ fieldset {
   }
 
   .navbar-brand {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--red-color);
-    text-shadow: #000 1px 1px 1px;
+    display: none;
+  }
+
+  .navbar {
+    padding-left: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20%;
+  }
+
+  .nav-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(8, 0, 0, 0.415);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    height: 100vh;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .nav-items li a {
+    padding-top: 0.5rem;
+    font-size: 30px;
+    font-weight: 700;
+    align-self: center;
+    text-align: center;
+  }
+
+  .header-nav-active {
+    visibility: visible;
+  }
+
+  .hamburger-btn {
+    background: none;
+    border: none;
+    border-style: none;
+    padding: 1rem;
+    padding-right: 6%;
+    cursor: pointer;
+    z-index: 1001;
+    display: block;
+    display: flex;
+    align-self: center;
+    color: white;
+  }
+
+  .header-toggle {
+    width: 31px;
+    height: 23px;
+  }
+
+  .header-list {
+    padding: 32px 16px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .header-list-item {
+    font-size: 32px;
+    color: white;
+    font-weight: 600;
   }
 }
 
