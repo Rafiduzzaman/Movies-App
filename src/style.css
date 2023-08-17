@@ -318,6 +318,11 @@ fieldset {
     height: 100vh;
     visibility: hidden;
     overflow: hidden;
+    align-content: flex-start;
+  }
+
+  #latestShowsLink {
+    padding-top: 7vh;
   }
 
   .nav-items li a {
