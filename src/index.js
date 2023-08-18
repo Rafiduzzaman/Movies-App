@@ -128,6 +128,18 @@ const renderMovies = async () => {
   
   `;
     movieContainer.appendChild(movieCard);
+
+    document.body.appendChild(modal);
+
+    // Adding previous comments the first time
+    const comments = await fetchCommentsFromApi(movie.id);
+    if (comments.length > 0) {
+      renderComments(modal, comments);
+      const commentsCounter = modal.querySelector('.commentsCounter');
+      const numComments = countComments(movie.id, comments);
+      commentsCounter.textContent = `Comments: ${numComments}`;
+    }
+
     const commentForm = modal.querySelector(`#commentFormBtn-${movie.id}`);
     commentForm.addEventListener('click', async (event) => {
       event.preventDefault();
