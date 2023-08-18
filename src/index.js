@@ -214,8 +214,17 @@ const renderMovies = async () => {
       </div>
     </div>
   </div>
-  
   `;
+
+    // Adding previous reservations te first time
+    document.body.appendChild(modalReservations);
+    const reservations = await fetchReservations(movie.id);
+    if (reservations.length > 0) {
+      renderReservations(modalReservations, reservations);
+      const reservationsCounter = modalReservations.querySelector('.reservationsCounter');
+      const numReservations = countReservations(movie.id, reservations);
+      reservationsCounter.textContent = `Reservation: ${numReservations}`;
+    }
 
     // Add event listener to revervations form
     const reservationForm = modalReservations.querySelector(`#reserveFormBtn-${movie.id}`);

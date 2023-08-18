@@ -11073,7 +11073,7 @@ var renderMovies = /*#__PURE__*/function () {
           movieContainer = document.getElementById('movieContainer');
           data.forEach( /*#__PURE__*/function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(movie) {
-              var movieCard, modal, comments, commentsCounter, numComments, commentForm, modalReservations, reservationForm, likeBtn, isLiked;
+              var movieCard, modal, comments, commentsCounter, numComments, commentForm, modalReservations, reservations, reservationsCounter, numReservations, reservationForm, likeBtn, isLiked;
               return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                 while (1) switch (_context4.prev = _context4.next) {
                   case 0:
@@ -11087,20 +11087,23 @@ var renderMovies = /*#__PURE__*/function () {
                     modal.setAttribute('aria-hidden', 'true');
                     modal.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n           <div><h4>Genres: <span>").concat(movie.genres.join(', '), "</span></h4> </div>\n           <div><h4>Ratings:<span> ").concat(movie.rating.average, "</span></h4></div>\n           <div><h4>Premiered: <span>").concat(movie.premiered, "</span></h4></div>\n         </div>\n         <div class=\"commentArea\">\n         </div>\n         <div><span class=\"commentsCounter\"></span></div>\n\n         <div>\n           <form  class=\"form\">\n           <h1>Comment</h1>\n           \n           <fieldset>\n             <label for=\"name\"></label>\n             <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n             \n             <label for=\"comment\"></label>\n             <textarea name=\"comment\" max=\"100\" id=\"comment-").concat(movie.id, "\" placeholder=\"Type comment\"  rows=\"5\"></textarea>\n           </fieldset> \n           <button id=\"commentFormBtn-").concat(movie.id, "\"  class=\"commentFormBtn\"  btn\" type=\"submit\">Submit</button>\n        \n           </form>\n\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  \n  ");
                     movieContainer.appendChild(movieCard);
+                    document.body.appendChild(modal);
 
                     // Adding previous comments the first time
-                    _context4.next = 12;
+                    _context4.next = 13;
                     return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.fetchCommentsFromApi)(movie.id);
-                  case 12:
+                  case 13:
                     comments = _context4.sent;
-                    (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.renderComments)(modal, comments);
-                    commentsCounter = modal.querySelector('.commentsCounter');
-                    numComments = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_10__.countComments)(movie.id, comments);
-                    commentsCounter.textContent = "Comments: ".concat(numComments);
+                    if (comments.length > 0) {
+                      (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.renderComments)(modal, comments);
+                      commentsCounter = modal.querySelector('.commentsCounter');
+                      numComments = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_10__.countComments)(movie.id, comments);
+                      commentsCounter.textContent = "Comments: ".concat(numComments);
+                    }
                     commentForm = modal.querySelector("#commentFormBtn-".concat(movie.id));
                     commentForm.addEventListener('click', /*#__PURE__*/function () {
                       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-                        var username, comment, commentArea, comments, commentsCounter, numComments;
+                        var username, comment, comments, commentsCounter, numComments;
                         return _regeneratorRuntime().wrap(function _callee$(_context) {
                           while (1) switch (_context.prev = _context.next) {
                             case 0:
@@ -11112,17 +11115,15 @@ var renderMovies = /*#__PURE__*/function () {
                             case 5:
                               modal.querySelector("#username-".concat(movie.id)).value = '';
                               modal.querySelector("#comment-".concat(movie.id)).value = '';
-                              commentArea = modal.querySelector('.commentArea');
-                              commentArea.innerHTML = '';
-                              _context.next = 11;
+                              _context.next = 9;
                               return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.fetchCommentsFromApi)(movie.id);
-                            case 11:
+                            case 9:
                               comments = _context.sent;
                               (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.renderComments)(modal, comments);
                               commentsCounter = modal.querySelector('.commentsCounter');
                               numComments = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_10__.countComments)(movie.id, comments);
                               commentsCounter.textContent = "Comments: ".concat(numComments);
-                            case 16:
+                            case 14:
                             case "end":
                               return _context.stop();
                           }
@@ -11140,7 +11141,20 @@ var renderMovies = /*#__PURE__*/function () {
                     modalReservations.id = "reservationsModal-".concat(movie.id);
                     modalReservations.setAttribute('aria-labelledby', "exampleModalCenterTitle-".concat(movie.id));
                     modalReservations.setAttribute('aria-hidden', 'true');
-                    modalReservations.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n         <div><h4>Geners: <span>").concat(movie.genres.join(', '), "</span></h4> </div>\n         <div><h4>Ratings:<span> ").concat(movie.rating.average, "</span></h4></div>\n         <div><h4>Premiered: <span>").concat(movie.premiered, "</span></h4></div>\n         </div>\n         <div class=\"reservationtArea\">\n         </div>\n         <div><span class=\"reservationsCounter\"></span></div>\n         <div>\n           <form  class=\"form\">\n           <h1>Reservations</h1>\n           <fieldset>\n            <div>\n                <label for=\"username\"></label>\n              <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n            </div>\n            <div>\n              <label for=\"date_start\"></label>\n              <input type=\"date\" id=\"date_start-").concat(movie.id, "\" name=\"date_start\">\n           </div>\n           <div>\n           <input type=\"date\" id=\"date_end-").concat(movie.id, "\" name=\"date_end\">\n           <label for=\"date_end\"></label>\n           </div>\n           </fieldset> \n            <button id=\"reserveFormBtn-").concat(movie.id, "\"  class=\" reserveFormBtn-").concat(movie.id, "   btn\" type=\"submit\">Reserve</button>\n           </form>\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  \n  ");
+                    modalReservations.innerHTML = "\n    <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\">\n         <div>\n           <img src=".concat(movie.image.medium, " class=\" image-fluid\" alt=\"popup image\">\n         </div>\n         <div><h3>").concat(movie.name, "</h3></div>\n         <div  class=\"movieSummary\">").concat(movie.summary, "</div>\n         <div  class=\"afterSummary\">\n         <div><h4>Geners: <span>").concat(movie.genres.join(', '), "</span></h4> </div>\n         <div><h4>Ratings:<span> ").concat(movie.rating.average, "</span></h4></div>\n         <div><h4>Premiered: <span>").concat(movie.premiered, "</span></h4></div>\n         </div>\n         <div class=\"reservationtArea\">\n         </div>\n         <div><span class=\"reservationsCounter\"></span></div>\n         <div>\n           <form  class=\"form\">\n           <h1>Reservations</h1>\n           <fieldset>\n            <div>\n                <label for=\"username\"></label>\n              <input type=\"text\"  placeholder=\"name\" id=\"username-").concat(movie.id, "\" name=\"username\">\n            </div>\n            <div>\n              <label for=\"date_start\"></label>\n              <input type=\"date\" id=\"date_start-").concat(movie.id, "\" name=\"date_start\">\n           </div>\n           <div>\n           <input type=\"date\" id=\"date_end-").concat(movie.id, "\" name=\"date_end\">\n           <label for=\"date_end\"></label>\n           </div>\n           </fieldset> \n            <button id=\"reserveFormBtn-").concat(movie.id, "\"  class=\" reserveFormBtn-").concat(movie.id, "   btn\" type=\"submit\">Reserve</button>\n           </form>\n         </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n  ");
+
+                    // Adding previous reservations te first time
+                    document.body.appendChild(modalReservations);
+                    _context4.next = 27;
+                    return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.fetchReservations)(movie.id);
+                  case 27:
+                    reservations = _context4.sent;
+                    if (reservations.length > 0) {
+                      (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.renderReservations)(modalReservations, reservations);
+                      reservationsCounter = modalReservations.querySelector('.reservationsCounter');
+                      numReservations = (0,_modules_counter_js__WEBPACK_IMPORTED_MODULE_10__.countReservations)(movie.id, reservations);
+                      reservationsCounter.textContent = "Reservation: ".concat(numReservations);
+                    }
 
                     // Add event listener to revervations form
                     reservationForm = modalReservations.querySelector("#reserveFormBtn-".concat(movie.id));
@@ -11211,9 +11225,9 @@ var renderMovies = /*#__PURE__*/function () {
                         }
                       }, _callee3);
                     })));
-                    _context4.next = 34;
+                    _context4.next = 37;
                     return (0,_modules_functionalities_js__WEBPACK_IMPORTED_MODULE_9__.getLikes)(movie.id);
-                  case 34:
+                  case 37:
                   case "end":
                     return _context4.stop();
                 }
