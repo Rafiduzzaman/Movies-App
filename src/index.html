@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovizHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <header id="hero-section">
+      <div class="navbar-container nav-bar-home">
+        <nav class="navbar container">
+          <a class="navbar-brand"  href="./index.html">MovizHub</a>
+          <button type="button" class="hamburger-btn " id="header-button">
+            <img
+                id="hamburger-image"
+                class="header-toggle"
+                src="./images/button-menu.png"
+                alt="Menu icon on the mobile version"
+              />
+          </button>
+            <ul class="nav-items  header-nav-inactive header-list" >
+              <li ><a class="nav-link active" aria-current="page" href="#" id="latestShowsLink">Latest Shows</a></li>
+              <li ><a class="nav-link" href="#">Favorites</a></li> 
+              <li ><a class="nav-link" href="#">Top rated</a></li>
+            </ul>
+        </nav>
+
+      </div>
+        <section >
+        <div class="px-4 py-4 my-5 text-center ">
+          <h1 class=" welcomeTitle type-effect"> <span class="welcomeTitleWelc">Welcome</span> to <span class="our">Our</span> <br> Movies Hub <span id="countsMovie"></span></h1>
+          <div class="col-lg-6 mx-auto">
+            <div class="d-grid gap-4 d-sm-flex justify-content-sm-center">
+              <input type="text" name="search">
+              <button class="searchBtn btn" type="submit">Search</button>
+            </div>
+          </div>
+        </div>  
+        </section>
+      </header>
+      <main>
+        <div class="container">
+          <div class="row" id="movieContainer">
+          </div>
+          <div class="modal" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    <footer class="footer-section">
+        <div class="container-div">
+          <div class="footer-copyright">
+            <p class="footer-description">Created by Microverse under CC license</p>
+          </div>
+        </div> 
+      </footer>
+    <script src="index.js"></script>
+</body>
+</html>
