@@ -43,7 +43,7 @@ const renderMovies = async () => {
                </div>
               <div  class="likeBtnContainer">
                 <span class="likesCount${movie.id}">0</span>
-                <span class="likeBtn" data-movie-id="${movie.id}">&#9825</span>
+                <span class="likeBtn" data-movie-id="${movie.id}">&nbsp;&#9825</span>
               </div>
             </div>
             <div class="card-button">
@@ -66,7 +66,7 @@ const renderMovies = async () => {
       `;
 
     const modal = document.createElement('div');
-    modal.classList.add('modal', 'fade');
+    modal.classList.add('modal');
     modal.id = `commentModal-${movie.id}`;
     modal.setAttribute(
       'aria-labelledby',
@@ -89,7 +89,7 @@ const renderMovies = async () => {
          <div><h3>${movie.name}</h3></div>
          <div  class="movieSummary">${movie.summary}</div>
          <div  class="afterSummary">
-           <div><h4>Geners: <span>${movie.genres.join(', ')}</span></h4> </div>
+           <div><h4>Genres: <span>${movie.genres.join(', ')}</span></h4> </div>
            <div><h4>Ratings:<span> ${movie.rating.average}</span></h4></div>
            <div><h4>Premiered: <span>${movie.premiered}</span></h4></div>
          </div>
