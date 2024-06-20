@@ -54,9 +54,9 @@
 ### Live Demo <a name="live-demo"></a>
 
 🚀 Live Demo
-Link to our deployed project (project is not deployed yet).
+Link to our deployed project 
 
-- https:///
+- [https:///](https://6674416ca47af86872d36c44--moviesraterr.netlify.app/)
 
 <!-- GETTING STARTED -->
 
