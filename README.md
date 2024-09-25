@@ -56,7 +56,7 @@
 🚀 Live Demo
 Link to our deployed project 
 
-- [Movies-App](https://6674416ca47af86872d36c44--moviesraterr.netlify.app/)
+- [[Movies-App](https://6674416ca47af86872d36c44--moviesraterr.netlify.app/)](https://moviesraterr.netlify.app/)
 
 <!-- GETTING STARTED -->
 
